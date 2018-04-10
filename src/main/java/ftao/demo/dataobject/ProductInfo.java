@@ -21,6 +21,6 @@ public class ProductInfo {
     private Integer categoryType;
     private Date createTime;
     private Date updateTime;
-
+    public ProductInfo(){}
 
 }

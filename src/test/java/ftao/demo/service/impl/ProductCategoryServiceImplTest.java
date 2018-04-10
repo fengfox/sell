@@ -23,6 +23,8 @@ public class ProductCategoryServiceImplTest {
 
     @Test
     public void findAll() {
+        System.out.print(productCategoryService.findAll().get(0).toString());
+
     }
 
     @Test
