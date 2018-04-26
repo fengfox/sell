@@ -24,11 +24,11 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
 
     @Override
     public List<ProductCategory> findByCategoryTypeIn(List<Integer> categoryTpyeList) {
-        return findByCategoryTypeIn(categoryTpyeList);
+        return productCategoryRepository.findByCategoryTypeIn(categoryTpyeList);
     }
 
     @Override
     public ProductCategory save(ProductCategory productCategory) {
-        return save(productCategory);
+        return productCategoryRepository.save(productCategory);
 }
     }

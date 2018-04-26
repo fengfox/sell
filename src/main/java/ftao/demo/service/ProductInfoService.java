@@ -1,3 +1,4 @@
+
 package ftao.demo.service;
 
 import ftao.demo.dataobject.ProductInfo;
@@ -20,3 +21,4 @@ public interface ProductInfoService {
     //加库存
     //减库存
 }
+
