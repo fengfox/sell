@@ -1,5 +1,7 @@
 package ftao.demo.dataobject;
 
+import ftao.demo.enums.OrderStatusEnum;
+import ftao.demo.enums.PayStatusEnum;
 import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -21,8 +23,8 @@ public class OrderMaster {
     private String buyerAddress;
     private String buyerOpenid;
     private Double orderAmount;
-    private Integer orderStatus;
-    private Integer payStatus;
+    private Integer orderStatus= OrderStatusEnum.NEW.getCode();
+    private Integer payStatus= PayStatusEnum.WAIT.getCode();
     private Date createTime;
     private Date updateTime;
     public OrderMaster(){}
