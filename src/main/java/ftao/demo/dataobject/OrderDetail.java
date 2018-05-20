@@ -12,7 +12,7 @@ import java.util.Date;
 @Data
 @DynamicUpdate
 public class OrderDetail {
-    @GeneratedValue
+
     @Id
     private String detailId;
     private String orderId;
@@ -21,7 +21,7 @@ public class OrderDetail {
     private Double productPrice;
     private Integer productQuantity;
     private String productIcon;
-    private Date crteateTime;
+    private Date createTime;
     private Date updateTime;
     public OrderDetail(){}
 

@@ -16,7 +16,6 @@ import java.util.Date;
 public class OrderMaster {
 
     @Id
-    @GeneratedValue
     private String orderId;
     private String buyerName;
     private String buyerPhone;
