@@ -3,7 +3,9 @@ package ftao.demo.service.impl;
 import ftao.demo.dataobject.OrderDetail;
 import ftao.demo.dataobject.OrderMaster;
 import ftao.demo.dataobject.ProductInfo;
+import ftao.demo.dto.CartDTO;
 import ftao.demo.dto.OrderDTO;
+import ftao.demo.enums.ResultEnum;
 import ftao.demo.exception.SellException;
 import ftao.demo.repository.OrderDetailRepository;
 import ftao.demo.repository.OrderMasterRepository;
@@ -19,6 +21,7 @@ import org.springframework.util.Assert;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -39,7 +42,7 @@ public class OrderServiceImpl implements OrderService {
             ProductInfo productInfo= productInfoService.findOne(id);
             if(productInfo==null)
             {
-                throw new SellException();
+                throw new SellException(ResultEnum.PRODUCT_NOT_EXIST);
             }
             //2.计算总价
             orderAmount=productInfo.getProductPrice()
@@ -61,7 +64,11 @@ public class OrderServiceImpl implements OrderService {
         BeanUtils.copyProperties(orderDTO,orderMaster);
         orderMasterRepository.save(orderMaster);
         //4.扣库存
-        return null;
+        List<CartDTO> cartDTOList=orderDTO.getOrderDetailList().stream().map(e ->
+                new CartDTO(e.getProductId(),e.getProductQuantity())
+        ).collect(Collectors.toList());
+        productInfoService.decreaseStock(cartDTOList);
+        return orderDTO;
     }
 
     @Override
